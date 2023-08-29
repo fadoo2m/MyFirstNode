@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Mini - ERP | SalesOrder</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+<%- include('./partials/sidebar.ejs') %>
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+      <%- include('./partials/topbar.ejs') %>
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb pl-0">
+                                    <li class="breadcrumb-item"><a href="home"><i class="material-icons"></i>Dashboard</a>
+                                    </li>
+            
+                                    <li class="breadcrumb-item active" aria-current="page">Sales Order</li>
+                                </ol>
+                            </nav>
+            
+                            <div class="ms-panel">
+                                <div class="ms-panel-header header-mini">
+                                    <div class="d-flex justify-content-between">
+                                        <h6>Primary Information</h6>
+            
+                                    </div>
+                                </div>
+                                <div class="ms-panel-body">
+                                    <!-- Invoice To -->
+                                    <form method="POST" action="/salesorder">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-4">
+                                                <label for="inputEmail4">Order #</label>
+                                                <input type="text" class="form-control" id="_orderrefrence" name="orderrefrence" required>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label class="mr-sm-2" for="inlineFormCustomSelect">Customer</label>
+                                                <select class="custom-select mr-sm-2" id="_customer" name="customer" required>
+                                                    <option selected></option>
+                                                    <option value="1">Customer 1</option>
+                                                    <option value="2">Customer 2</option>
+                                                    <option value="3">Customer 3</option>  
+                                                </select>
+                                               
+                                                
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="inputDate">Date</label>
+                                                <input type="date" class="form-control" id="_date" name="date" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-4">
+                                                <label for="inputCity">Memo</label>
+                                                <input type="text" class="form-control" name="memo" id="_memo">
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="inputState">Location</label>
+                                                <select class="custom-select mr-sm-2" id="_location" name="location" required>
+                                                    <option selected></option>
+                                                    <option value="1">Location 1</option>
+                                                    <option value="2">Location 2</option>
+                                                    <option value="3">Location 3</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="related">Related Transactions</label>
+                                                <input class="form-control" id="_relatedtransaction" name="related" type="text" placeholder=""
+                                                    disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-4">
+                                                <label for="inputState">Status</label>
+                                                <select class="custom-select mr-sm-2" id="_status" name="status" required>
+                                                    <option value="1" selected>Pending Billing</option>
+                                                    <option value="2">Billed</option>
+                                                    <option value="3">Refunded</option>
+                                                </select>
+                                            </div>
+                                        </div>
+            
+                                        <!-- Invoice Table -->
+                                        <div class="ms-invoice-table table-responsive mt-5">
+                                            <table class="table table-bordered table-hover" id="item_table">
+                                                <thead>
+                                                    <tr class="text-capitalize">
+                                                        <th class="text-left">LineNo.</th>
+                                                        <th class="text-left">Item</th>
+                                                        <th class="text-left">Description</th>
+                                                        <th class="text-left">Quantity</th>
+                                                        <th class="text-left">Rate</th>
+                                                        <th class="text-left">Tax Precent %</th>
+                                                        <th class="text-left">Gross Amount</th>
+                                                        <th class="text-left">Net Amount</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><input type="text" class="form-control" id="_lineid" readonly name="lineid"></td>
+                                                        <td><input type="text" class="form-control" id="_item" required name="item"></td>
+                                                        <td><input type="text" class="form-control" id="_description" name="description" ></td>
+                                                        <td><input type="number" class="form-control" id="_qty" required name="qty"></td>
+                                                        <td><input type="number" class="form-control" id="_rate" required name="rate"></td>
+                                                        <td><input type="number" class="form-control" id="_taxrate" required name="taxrate"></td>
+                                                        <td><input type="number" class="form-control" step=".01" id="_grossamount" readonly name="grossamount"></td>
+                                                        <td><input type="number" class="form-control" step=".01" id="_netamount" readonly name="netamount"></td>
+                                                    </tr>
+            
+                                                </tbody>
+                                                 <tfoot>
+                                                <!-- <tr>
+                                                    <td>Total Cost: </td>
+                                                    <td>$155</td>
+                                                </tr> -->
+                                            </tfoot>
+                                            </table>
+            
+                                        </div>
+                                        <button id="addBtn" class="btn btn-default pull-left">Add Row</button>
+                                        <button id="removeBtn" class="pull-right btn btn-default">Delete Row</button>
+                                        <div class="invoice-buttons text-right">
+                                            <!-- <a href="#" class="btn btn-primary mr-2">Print Invoice</a>  -->
+                                            <button class="btn btn-primary" type="submit">Save</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+            
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+            <%- include('./partials/footer.ejs') %>
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <%- include('./partials/logout.ejs') %>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+    <script src="js/tableslines.js"></script>
+
+   
+
+
+</body>
+
+</html>
